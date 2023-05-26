@@ -18,9 +18,7 @@ class Users {
 		return user.length === 0 ? null : user[0]
 	}
 
-	static async addUser(
-		{ username, password }: { username: string; password: string },
-	) {
+	static async addUser({ username, password }: { username: string; password: string }) {
 		const result = await db.execute(
 			'INSERT INTO users(username, password) VALUES(?, ?)',
 			[username, password],

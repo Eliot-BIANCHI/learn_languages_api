@@ -1,7 +1,7 @@
 {
 	"tasks": {
 		"dev": "deno run --allow-read --allow-net --allow-env --watch main.ts",
-		"test": "deno test --allow-read --allow-net --allow-env"
+		"test": "deno test  --allow-read --allow-net --allow-env tests/languages.test.ts"
 	},
 	"fmt": {
 		"options": {

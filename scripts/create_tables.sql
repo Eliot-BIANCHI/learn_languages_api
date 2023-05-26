@@ -23,14 +23,19 @@ CREATE TABLE IF NOT EXISTS `words`(
     `name` VARCHAR(50),
     `languageId` INT,
     PRIMARY KEY(`wordId`),
-    FOREIGN KEY(`languageId`) REFERENCES `languages`(`languageId`)
+    FOREIGN KEY(`languageId`) 
+        REFERENCES `languages`(`languageId`)
+        ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS `translations`(
     `wordTranslatedId` INT,
     `wordTranslationId` INT,
     PRIMARY KEY(`wordTranslatedId`, `wordTranslationId`),
-    FOREIGN KEY(`wordTranslatedId`) REFERENCES `words`(`wordId`),
-    FOREIGN KEY(`wordTranslationId`) REFERENCES `words`(`wordId`)
+    FOREIGN KEY(`wordTranslatedId`)
+        REFERENCES `words`(`wordId`)
+        ON DELETE CASCADE,
+    FOREIGN KEY(`wordTranslationId`)
+        REFERENCES `words`(`wordId`)
+        ON DELETE CASCADE
 );
-
