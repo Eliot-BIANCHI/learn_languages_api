@@ -1,0 +1,13 @@
+{
+	"errors": {
+		"get_failed": 105,
+		"post_failed": 106,
+		"put_failed": 107,
+		"patch_failed": 108,
+		"delete_failed": 109,
+
+		"invalid_id": 601,
+		"invalid_input": 603,
+		"request_failed": 605
+	}
+}
