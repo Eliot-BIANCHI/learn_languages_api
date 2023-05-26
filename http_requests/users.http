@@ -1,0 +1,29 @@
+GET http://localhost:3000/users?count=4
+
+###
+
+GET http://localhost:3000/users/2
+
+###
+
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+    "username": "ssass",
+    "password": "1234zaasasasssasaaa67"
+}
+
+###
+
+PUT http://localhost:3000/users/2
+Content-Type: application/json
+
+{
+    "username": "iohzazs",
+    "password": "UvIDIlZkOHj8f1sg"
+}
+
+###
+
+DELETE http://localhost:3000/users/7
