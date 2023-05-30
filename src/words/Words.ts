@@ -22,11 +22,13 @@ class Words {
 		return word.length === 0 ? null : word[0]
 	}
 
-	static async addWord({ name, languageId }: { name: string; languageId: number }) {
+	static async addWord(
+		{ name, languageId, grammaticalCategoryId }: { name: string; languageId: number; grammaticalCategoryId: number },
+	) {
 		const result = await db.execute(
-			`INSERT INTO words(name, languageId) 
-			 VALUES(?, ?)`,
-			[name, languageId],
+			`INSERT INTO words(name, languageId, grammaticalCategoryId) 
+			 VALUES(?, ?, ?)`,
+			[name, languageId, grammaticalCategoryId],
 		)
 		return result
 	}

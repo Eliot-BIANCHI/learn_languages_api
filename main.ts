@@ -3,6 +3,7 @@ import 'https://deno.land/std@0.187.0/dotenv/load.ts'
 
 import usersRoutes from './src/users/routes.ts'
 import languagesRoutes from './src/languages/routes.ts'
+import grammaticalCategoriesRoutes from './src/grammatical_categories/routes.ts'
 import wordsRoutes from './src/words/routes.ts'
 import translationsRoutes from './src/translations/routes.ts'
 
@@ -13,6 +14,9 @@ app.use(usersRoutes.allowedMethods())
 
 app.use(languagesRoutes.routes())
 app.use(languagesRoutes.allowedMethods())
+
+app.use(grammaticalCategoriesRoutes.routes())
+app.use(grammaticalCategoriesRoutes.allowedMethods())
 
 app.use(wordsRoutes.routes())
 app.use(wordsRoutes.allowedMethods())

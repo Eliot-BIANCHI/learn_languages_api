@@ -1,0 +1,5 @@
+GET http://localhost:3000/grammatical-categories
+
+###
+
+GET http://localhost:3000/grammatical-categories/3

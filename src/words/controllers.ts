@@ -39,11 +39,10 @@ export async function getWord(ctx: Context) {
 
 export async function addWord(ctx: Context) {
 	try {
-		const { name } = ctx.state.data as Word
-		const languageId = ctx.state.languageId as number
-		const result = await Words.addWord({ name, languageId })
+		const { name, languageId, grammaticalCategoryId } = ctx.state.data as Word
+		const result = await Words.addWord({ name, languageId, grammaticalCategoryId })
 		if (result.affectedRows === 1) {
-			const word: Word = { wordId: result.lastInsertId as number, name, languageId }
+			const word: Word = { wordId: result.lastInsertId as number, name, languageId, grammaticalCategoryId }
 			ctx.response.status = Status.Created
 			ctx.response.body = { data: word }
 		} else {

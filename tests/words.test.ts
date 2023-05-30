@@ -26,6 +26,7 @@ Deno.test('Add a single word', async () => {
 	const body = {
 		name: 'au revoir',
 		languageId: 1,
+		grammaticalCategoryId: 9,
 	}
 	const response = await fetch(wordsUrl, {
 		method: 'POST',
@@ -44,6 +45,7 @@ Deno.test('Update a single word based of an ID', async () => {
 	const body = {
 		name: 'à bientôt',
 		languageId: 1,
+		grammaticalCategoryId: 9,
 	}
 	const response = await fetch(`${wordsUrl}/${wordToDeleteId}`, {
 		method: 'PUT',

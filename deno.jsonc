@@ -1,11 +1,13 @@
 {
 	"tasks": {
 		"dev": "deno run --allow-read --allow-net --allow-env --watch main.ts",
+
 		"test-all": "deno test  --allow-read --allow-net --allow-env",
 		"test-users": "deno test  --allow-read --allow-net --allow-env tests/users.test.ts",
 		"test-languages": "deno test  --allow-read --allow-net --allow-env tests/languages.test.ts",
 		"test-words": "deno test  --allow-read --allow-net --allow-env tests/words.test.ts",
-		"test-translations": "deno test  --allow-read --allow-net --allow-env tests/translations.test.ts"
+		"test-translations": "deno test  --allow-read --allow-net --allow-env tests/translations.test.ts",
+		"test-grammatical-categories": "deno test  --allow-read --allow-net --allow-env tests/grammatical_categories.test.ts"
 	},
 	"fmt": {
 		"options": {

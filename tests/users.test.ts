@@ -11,7 +11,7 @@ Deno.test('Get a certain number of users based of the "count" query', async () =
 	const count = 3
 	const response = await fetch(`${usersUrl}?offset=0&count=${count}`)
 	const result = await response.json()
-	const user: User = result.data[0]
+	const user: User = result.data.find((user: User) => user.userId === 1)
 	assertEquals(result.data.length, count)
 	assertEquals(user.username, 'Eliot Bianchi')
 })

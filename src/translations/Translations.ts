@@ -1,7 +1,7 @@
 import db from '../../helpers/db.ts'
 import { Translation } from '../../types/index.ts'
 
-class Words {
+class Translations {
 	static async getTranslations(wordTranslatedId: number) {
 		const translations: Translation[] = await db.query(
 			`SELECT wordTranslatorId, words.name 
@@ -49,4 +49,4 @@ class Words {
 	}
 }
 
-export default Words
+export default Translations
