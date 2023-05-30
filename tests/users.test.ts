@@ -48,7 +48,7 @@ Deno.test('Update a single user based of an ID', async () => {
 		username: 'Martin Bienvenue',
 		password: password,
 	}
-	const response = await fetch(`${usersUrl}/2`, {
+	const response = await fetch(`${usersUrl}/${userToDeleteId}`, {
 		method: 'PUT',
 		headers: {
 			'Content-Type': 'application/json',

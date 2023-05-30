@@ -1,0 +1,29 @@
+GET http://localhost:3000/words?name=we&languageId=2
+
+###
+
+GET http://localhost:3000/words/3
+
+###
+
+POST http://localhost:3000/words
+Content-Type: application/json
+
+{
+   "name": "pain",
+   "languageId": 1
+}
+
+###
+
+PUT http://localhost:3000/words/3
+Content-Type: application/json
+
+{
+   "name": "zezeze",
+   "languageId": 2
+}
+
+###
+
+DELETE http://localhost:3000/words/4

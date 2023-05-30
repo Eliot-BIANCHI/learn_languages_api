@@ -1,7 +1,11 @@
 {
 	"tasks": {
 		"dev": "deno run --allow-read --allow-net --allow-env --watch main.ts",
-		"test": "deno test  --allow-read --allow-net --allow-env tests/languages.test.ts"
+		"test-all": "deno test  --allow-read --allow-net --allow-env",
+		"test-users": "deno test  --allow-read --allow-net --allow-env tests/users.test.ts",
+		"test-languages": "deno test  --allow-read --allow-net --allow-env tests/languages.test.ts",
+		"test-words": "deno test  --allow-read --allow-net --allow-env tests/words.test.ts",
+		"test-translations": "deno test  --allow-read --allow-net --allow-env tests/translations.test.ts"
 	},
 	"fmt": {
 		"options": {
@@ -9,7 +13,7 @@
 			"indentWidth": 2,
 			"singleQuote": true,
 			"semiColons": false,
-			"lineWidth": 100
+			"lineWidth": 120
 		}
 	}
 }

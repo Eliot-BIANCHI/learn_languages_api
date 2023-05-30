@@ -12,7 +12,3 @@ Content-Type: application/json
 {
    "name": "Español"
 }
-
-###
-
-DELETE http://localhost:3000/languages/2

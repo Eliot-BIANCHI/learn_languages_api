@@ -14,28 +14,27 @@ CREATE TABLE IF NOT EXISTS `users`(
 
 CREATE TABLE IF NOT EXISTS `languages`(
     `languageId` INT AUTO_INCREMENT,
-    `name` VARCHAR(10),
+    `name` VARCHAR(10) UNIQUE,
     PRIMARY KEY(`languageId`)
 );
 
 CREATE TABLE IF NOT EXISTS `words`(
     `wordId` INT AUTO_INCREMENT,
-    `name` VARCHAR(50),
+    `name` VARCHAR(50) UNIQUE,
     `languageId` INT,
     PRIMARY KEY(`wordId`),
     FOREIGN KEY(`languageId`) 
         REFERENCES `languages`(`languageId`)
-        ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS `translations`(
     `wordTranslatedId` INT,
-    `wordTranslationId` INT,
-    PRIMARY KEY(`wordTranslatedId`, `wordTranslationId`),
+    `wordTranslatorId` INT,
+    PRIMARY KEY(`wordTranslatedId`, `wordTranslatorId`),
     FOREIGN KEY(`wordTranslatedId`)
         REFERENCES `words`(`wordId`)
         ON DELETE CASCADE,
-    FOREIGN KEY(`wordTranslationId`)
+    FOREIGN KEY(`wordTranslatorId`)
         REFERENCES `words`(`wordId`)
         ON DELETE CASCADE
 );

@@ -1,19 +1,19 @@
 import { Context, Status } from 'https://deno.land/x/oak@v12.4.0/mod.ts'
 
 import { generateError } from '../../tools/index.ts'
-import Users from './Users.ts'
-import { User } from '../../types/index.ts'
-import { getUsers } from '../../types/queries.schemas.ts'
+import Words from './Words.ts'
+import { Word } from '../../types/index.ts'
+import { getWords } from '../../types/queries.schemas.ts'
 
-export async function getUsers(ctx: Context) {
+export async function getWords(ctx: Context) {
 	try {
-		const { offset, count } = ctx.state.queries as getUsers
-		const users: User[] = await Users.getUsers({ offset, count })
-		if (users.length === 0) {
+		const { name, languageId } = ctx.state.queries as getWords
+		const words: Word[] = await Words.getWords({ name, languageId })
+		if (words.length === 0) {
 			ctx.response.status = Status.NoContent
 		} else {
 			ctx.response.status = Status.OK
-			ctx.response.body = { data: users }
+			ctx.response.body = { data: words }
 		}
 	} catch (err) {
 		ctx.response.status = Status.InternalServerError
@@ -21,15 +21,15 @@ export async function getUsers(ctx: Context) {
 	}
 }
 
-export async function getUser(ctx: Context) {
+export async function getWord(ctx: Context) {
 	try {
-		const userId = ctx.state.userId as number
-		const user: User | null = await Users.getUser(userId)
-		if (user === null) {
+		const wordId = ctx.state.wordId as number
+		const word: Word | null = await Words.getWord(wordId)
+		if (word === null) {
 			ctx.response.status = Status.NoContent
 		} else {
 			ctx.response.status = Status.OK
-			ctx.response.body = { data: user }
+			ctx.response.body = { data: word }
 		}
 	} catch (err) {
 		ctx.response.status = Status.InternalServerError
@@ -37,21 +37,22 @@ export async function getUser(ctx: Context) {
 	}
 }
 
-export async function addUser(ctx: Context) {
+export async function addWord(ctx: Context) {
 	try {
-		const { username, password } = ctx.state.data as User
-		const result = await Users.addUser({ username, password })
+		const { name } = ctx.state.data as Word
+		const languageId = ctx.state.languageId as number
+		const result = await Words.addWord({ name, languageId })
 		if (result.affectedRows === 1) {
-			const user: User = { userId: result.lastInsertId as number, username, password: '**********' }
+			const word: Word = { wordId: result.lastInsertId as number, name, languageId }
 			ctx.response.status = Status.Created
-			ctx.response.body = { data: user }
+			ctx.response.body = { data: word }
 		} else {
 			ctx.response.status = Status.BadRequest
 			ctx.response.body = {
 				error: {
 					code: 106,
 					type: 'post_failed',
-					info: 'Something went wrong : Impossible to add the user',
+					info: 'Something went wrong : Impossible to add the word',
 				},
 			}
 		}
@@ -61,11 +62,11 @@ export async function addUser(ctx: Context) {
 	}
 }
 
-export async function updateUser(ctx: Context) {
+export async function updateWord(ctx: Context) {
 	try {
-		const userId = ctx.state.userId as number
-		const { username, password } = ctx.state.data as User
-		const result = await Users.updateUser(userId, { username, password })
+		const wordId = ctx.state.wordId as number
+		const { name, languageId } = ctx.state.data as Word
+		const result = await Words.updateWord(wordId, { name, languageId })
 		if (result.affectedRows === 1) {
 			ctx.response.status = Status.NoContent
 		} else {
@@ -74,7 +75,7 @@ export async function updateUser(ctx: Context) {
 				error: {
 					code: 107,
 					type: 'update_failed',
-					info: 'The user doesn\'t exist or none of it\'s fields have been modified',
+					info: 'The word doesn\'t exist or none of it\'s fields have been modified',
 				},
 			}
 		}
@@ -84,10 +85,10 @@ export async function updateUser(ctx: Context) {
 	}
 }
 
-export async function deleteUser(ctx: Context) {
+export async function deleteWord(ctx: Context) {
 	try {
-		const userId = ctx.state.userId as number
-		const result = await Users.deleteUser(userId)
+		const wordId = ctx.state.wordId as number
+		const result = await Words.deleteWord(wordId)
 		if (result.affectedRows === 1) {
 			ctx.response.status = Status.NoContent
 		} else {
@@ -96,7 +97,7 @@ export async function deleteUser(ctx: Context) {
 				error: {
 					code: 109,
 					type: 'delete_failed',
-					info: 'The user doesn\'t exist',
+					info: 'The word doesn\'t exist',
 				},
 			}
 		}

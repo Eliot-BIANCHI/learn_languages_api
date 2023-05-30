@@ -18,9 +18,15 @@ INSERT INTO `words`(`name`, `languageId`)
           ('arme', 1),
           ('weapon', 2),
           ('cauchemar', 1),
-          ('nightmare', 2);
+          ('nightmare', 2),
+          ('deceitful', 2),
+          ('malhonnête', 1),
+          ('trompeur', 1),
+          ('bad dream', 2);
 
-INSERT INTO `translations`(`wordTranslatedId`, `wordTranslationId`)
+INSERT INTO `translations`(`wordTranslatedId`, `wordTranslatorId`)
     VALUES(1, 2),
           (3, 4),
-          (5, 6);
+          (5, 6),
+          (7, 8),
+          (7, 9);

@@ -7,6 +7,7 @@
 		"delete_failed": 109,
 
 		"invalid_id": 601,
+		"invalid_queries": 602,
 		"invalid_input": 603,
 		"request_failed": 605
 	}

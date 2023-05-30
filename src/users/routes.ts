@@ -1,27 +1,20 @@
 import { Router } from 'https://deno.land/x/oak@v12.4.0/mod.ts'
 
 import { addUser, deleteUser, getUser, getUsers, updateUser } from './controllers.ts'
-import { checkQueries, validateIdParam, validateInputs } from '../../middlewares/index.ts'
-import { userSchema } from '../../types/index.ts'
-import { NumberQuery } from '../../types/queries.types.ts'
+import { validateIdParams, validateInputs, validateQueries } from '../../middlewares/index.ts'
+import { UserSchema } from '../../types/index.ts'
+import { getUsersSchema } from '../../types/queries.schemas.ts'
 
 const router = new Router()
 
-router.get(
-	'/users',
-	checkQueries([
-		{ name: 'offset', schema: { min: 0, default: 0 } as NumberQuery },
-		{ name: 'count', schema: { min: 0, max: 30, default: 5 } as NumberQuery },
-	]),
-	getUsers,
-)
+router.get('/users', validateQueries(getUsersSchema), getUsers)
 
-router.get('/users/:userId', validateIdParam('userId'), getUser)
+router.get('/users/:userId', validateIdParams(['userId']), getUser)
 
-router.post('/users', validateInputs(userSchema), addUser)
+router.post('/users', validateInputs(UserSchema), addUser)
 
-router.put('/users/:userId', validateIdParam('userId'), validateInputs(userSchema), updateUser)
+router.put('/users/:userId', validateIdParams(['userId']), validateInputs(UserSchema), updateUser)
 
-router.delete('/users/:userId', validateIdParam('userId'), deleteUser)
+router.delete('/users/:userId', validateIdParams(['userId']), deleteUser)
 
 export default router

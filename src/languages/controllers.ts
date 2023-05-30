@@ -58,25 +58,3 @@ export async function addLanguage(ctx: Context) {
 		ctx.response.body = { error: generateError(err.message) }
 	}
 }
-
-export async function deleteUser(ctx: Context) {
-	try {
-		const languageId = ctx.state.languageId as number
-		const result = await Languages.deleteLanguage(languageId)
-		if (result.affectedRows === 1) {
-			ctx.response.status = Status.NoContent
-		} else {
-			ctx.response.status = Status.BadRequest
-			ctx.response.body = {
-				error: {
-					code: 109,
-					type: 'delete_failed',
-					info: 'Something went wrong : Impossible to delete the language',
-				},
-			}
-		}
-	} catch (err) {
-		ctx.response.status = Status.InternalServerError
-		ctx.response.body = { error: generateError(err.message) }
-	}
-}

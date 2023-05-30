@@ -1,0 +1,15 @@
+GET http://localhost:3000/translations/7
+
+###
+
+POST http://localhost:3000/translations
+Content-Type: application/json
+
+{
+   "wordTranslatedId": 7,
+   "wordTranslatorId": 8
+}
+
+###
+
+DELETE http://localhost:3000/translations/7/8
