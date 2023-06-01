@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `grammaticalCategories`(
 
 CREATE TABLE IF NOT EXISTS `words`(
     `wordId` INT AUTO_INCREMENT,
-    `name` VARCHAR(50) UNIQUE,
+    `name` VARCHAR(50) NOT NULL,
     `languageId` INT NOT NULL,
     `grammaticalCategoryId` INT NOT NULL,
     PRIMARY KEY(`wordId`),
@@ -40,6 +40,7 @@ CREATE TABLE IF NOT EXISTS `words`(
 CREATE TABLE IF NOT EXISTS `translations`(
     `wordTranslatedId` INT,
     `wordTranslatorId` INT,
+    `illustration` VARCHAR(255),
     PRIMARY KEY(`wordTranslatedId`, `wordTranslatorId`),
     FOREIGN KEY(`wordTranslatedId`)
         REFERENCES `words`(`wordId`)

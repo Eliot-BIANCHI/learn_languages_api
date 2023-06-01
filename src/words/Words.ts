@@ -4,7 +4,7 @@ import { Word } from '../../types/index.ts'
 class Words {
 	static async getWords({ name, languageId }: { name: string; languageId: number }) {
 		const words: Word[] = await db.query(
-			`SELECT wordId, name 
+			`SELECT wordId, name
 			 FROM words 
 			 WHERE languageId = ? AND name LIKE ?`,
 			[languageId, name + '%'],
@@ -14,7 +14,7 @@ class Words {
 
 	static async getWord(wordId: number) {
 		const word: Word[] = await db.query(
-			`SELECT wordId, name 
+			`SELECT wordId, name
 			 FROM words 
 			 WHERE wordId = ?`,
 			[wordId],

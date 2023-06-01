@@ -38,8 +38,27 @@ export type Word = z.infer<typeof Word>
 export const TranslationSchema = z.object({
 	wordTranslatedId: z.coerce.number().nonnegative(),
 	wordTranslatorId: z.coerce.number().nonnegative(),
+	illustration: z.string().min(10).max(255).optional(),
 })
 const Translation = TranslationSchema.extend({
 	name: z.string(),
 })
 export type Translation = z.infer<typeof Translation>
+
+export const GameSchema = z.object({
+	languageTranslatedId: z.coerce.number().nonnegative(),
+	languageTranslatorId: z.coerce.number().nonnegative(),
+	numberTranslations: z.coerce.number().nonnegative(),
+})
+export type Game = z.infer<typeof GameSchema>
+
+export type FindCorrectTranslation = {
+	displayed: string
+	correctAnswer: string
+	wrongAnswer1: string
+	wrongAnswer2: string
+}
+export type TranslateItRight = {
+	displayed: string
+	correctAnswer: string
+}

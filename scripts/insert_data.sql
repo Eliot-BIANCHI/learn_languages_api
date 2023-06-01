@@ -33,11 +33,17 @@ INSERT INTO `words`(`name`, `languageId`, `grammaticalCategoryId`)
           ('deceitful', 2, 4),
           ('malhonnête', 1, 4),
           ('trompeur', 1, 4),
-          ('bad dream', 2, 1);
+          ('bad dream', 2, 1),
+          ('adieu', 1, 1),
+          ('goodbye', 2, 1),
+          ('test$', 1, 9),
+          ('test*', 2, 9);
 
-INSERT INTO `translations`(`wordTranslatedId`, `wordTranslatorId`)
-    VALUES(1, 2),
-          (3, 4),
-          (5, 6),
-          (7, 8),
-          (7, 9);
+INSERT INTO `translations`(`wordTranslatedId`, `wordTranslatorId`, `illustration`)
+    VALUES(1, 2, 'Non capisco quei colleghi che non danno mai il buongiorno.'),
+          (3, 4, 'It is unfair to use a weapon against an unarmed opponent.'),
+          (5, 6, 'The financial situation of the company was a nightmare.'),
+          (5, 10, 'I had a bad dream last night about failing all my exams.'),
+          (7, 8, 'Ne pas payer le juste prix était malhonnête de sa part.'),
+          (7, 9, 'Les apparences sont parfois trompeuses.'),
+          (11, 12, 'Goodbye! See you all next year!');

@@ -1,0 +1,19 @@
+POST http://localhost:3000/games/find-correct-translation
+Content-Type: application/json
+
+{
+    "languageTranslatedId": 1,
+    "languageTranslatorId": 2,
+    "numberTranslations": 1
+}
+
+###
+
+POST http://localhost:3000/games/translate-it-right
+Content-Type: application/json
+
+{
+    "languageTranslatedId": 1,
+    "languageTranslatorId": 2,
+    "numberTranslations": 10
+}

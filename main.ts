@@ -6,6 +6,7 @@ import languagesRoutes from './src/languages/routes.ts'
 import grammaticalCategoriesRoutes from './src/grammatical_categories/routes.ts'
 import wordsRoutes from './src/words/routes.ts'
 import translationsRoutes from './src/translations/routes.ts'
+import gamesRoutes from './src/games/routes.ts'
 
 const app = new Application()
 
@@ -23,6 +24,9 @@ app.use(wordsRoutes.allowedMethods())
 
 app.use(translationsRoutes.routes())
 app.use(translationsRoutes.allowedMethods())
+
+app.use(gamesRoutes.routes())
+app.use(gamesRoutes.allowedMethods())
 
 const PORT = parseInt(Deno.env.get('SERVER_PORT') as string) || 3001
 await app.listen({ port: PORT })

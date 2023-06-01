@@ -22,8 +22,8 @@ export async function getTranslations(ctx: Context) {
 
 export async function addTranslation(ctx: Context) {
 	try {
-		const { wordTranslatedId, wordTranslatorId } = ctx.state.data as Translation
-		const result = await Translations.addTranslation({ wordTranslatedId, wordTranslatorId })
+		const { wordTranslatedId, wordTranslatorId, illustration } = ctx.state.data as Translation
+		const result = await Translations.addTranslation({ wordTranslatedId, wordTranslatorId, illustration })
 		if (result.affectedRows === 1) {
 			const translation = await Translations.getTranslation({ wordTranslatedId, wordTranslatorId }) as Translation
 			ctx.response.status = Status.Created

@@ -4,9 +4,10 @@ import { Translation } from '../../types/index.ts'
 class Translations {
 	static async getTranslations(wordTranslatedId: number) {
 		const translations: Translation[] = await db.query(
-			`SELECT wordTranslatorId, words.name 
+			`SELECT wordTranslatorId, words.name, illustration 
 			 FROM translations
-			 INNER JOIN words ON wordTranslatorId = words.wordId
+			 INNER JOIN words 
+			 	ON wordTranslatorId = words.wordId
 			 WHERE wordTranslatedId = ?`,
 			[wordTranslatedId],
 		)
@@ -17,9 +18,10 @@ class Translations {
 		{ wordTranslatedId, wordTranslatorId }: { wordTranslatedId: number; wordTranslatorId: number },
 	) {
 		const translation: Translation[] = await db.query(
-			`SELECT wordTranslatedId, wordTranslatorId, words.name 
+			`SELECT wordTranslatedId, wordTranslatorId, words.name, illustration 
 			 FROM translations
-			 INNER JOIN words ON wordTranslatorId = words.wordId
+			 INNER JOIN words 
+			 	ON wordTranslatorId = words.wordId
 			 WHERE wordTranslatedId = ? AND wordTranslatorId = ?`,
 			[wordTranslatedId, wordTranslatorId],
 		)
@@ -27,12 +29,16 @@ class Translations {
 	}
 
 	static async addTranslation(
-		{ wordTranslatedId, wordTranslatorId }: { wordTranslatedId: number; wordTranslatorId: number },
+		{ wordTranslatedId, wordTranslatorId, illustration }: {
+			wordTranslatedId: number
+			wordTranslatorId: number
+			illustration: string | undefined
+		},
 	) {
 		const result = await db.execute(
-			`INSERT INTO translations(wordTranslatedId, wordTranslatorId) 
-			 VALUES(?, ?)`,
-			[wordTranslatedId, wordTranslatorId],
+			`INSERT INTO translations(wordTranslatedId, wordTranslatorId, illustration) 
+			 VALUES(?, ?, ?)`,
+			[wordTranslatedId, wordTranslatorId, illustration],
 		)
 		return result
 	}

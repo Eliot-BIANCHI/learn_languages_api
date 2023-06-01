@@ -15,8 +15,8 @@ Deno.test('Get a certain number of translations based of the ID of the word that
 
 Deno.test('Add a single translation', async () => {
 	const body = {
-		wordTranslatedId: 5,
-		wordTranslatorId: 10,
+		wordTranslatedId: 13,
+		wordTranslatorId: 14,
 	}
 	const response = await fetch(translationsUrl, {
 		method: 'POST',
@@ -27,11 +27,11 @@ Deno.test('Add a single translation', async () => {
 	})
 	const result = await response.json()
 	const translation: Translation = result.data
-	assertEquals(translation.name, 'bad dream')
+	assertEquals(translation.name, 'test*')
 })
 
 Deno.test('Delete a single translation based of the ID of the word translated and the word translator', async () => {
-	const response = await fetch(`${translationsUrl}/5/10`, {
+	const response = await fetch(`${translationsUrl}/13/14`, {
 		method: 'DELETE',
 	})
 	assertEquals(response.body, null)
